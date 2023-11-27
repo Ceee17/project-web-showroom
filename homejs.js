@@ -38,4 +38,3 @@ sidebar.addEventListener("mouseleave", hideSidebar);
 sidebar.addEventListener("mouseenter", showSidebar);
 sidebarOpenBtn.addEventListener("click", toggleSidebar);
 sidebarCloseBtn.addEventListener("click", toggleSidebar);
-
