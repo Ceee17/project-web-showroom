@@ -100,7 +100,7 @@
       app.controller("ImageCarouselController", function ($scope, $interval) {
         $scope.imageIndex = 0;
 
-        $scope.carouselImages = ["assets/home1.jpg", "assets/home2.png", "assets/home3.jpg"];
+        $scope.carouselImages = ["assets/hero1.jpg", "assets/home2.png", "assets/home3.jpg"];
 
         $scope.nextImage = function () {
           $scope.imageIndex = ($scope.imageIndex + 1) % $scope.carouselImages.length;
