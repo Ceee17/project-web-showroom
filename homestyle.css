@@ -39,16 +39,16 @@ body {
 
 @keyframes theme {
   0% {
-    background: #CC0000;
+    background: #cc0000;
   }
   33% {
-    background: #E5E5E5;
+    background: #e5e5e5;
   }
   50% {
-    background: #FF0000;
+    background: #ff0000;
   }
   100% {
-    background: #A3A3A3;
+    background: #a3a3a3;
   }
 }
 
@@ -343,10 +343,9 @@ section {
   box-shadow: 20px 30px 25px rgba(0, 0, 0, 0.3); /* Add a box shadow */
   padding-left: 10px;
   padding-top: 30px;
-  padding-bottom:10px ;
-  padding-right:10px ;
+  padding-bottom: 10px;
+  padding-right: 10px;
   transition: transform 0.3s ease-in-out;
-
 }
 
 .card img {
@@ -382,7 +381,7 @@ section {
 
 html {
   scroll-behavior: smooth;
-
+}
 .image-carousel {
   display: flex;
   overflow: hidden;
