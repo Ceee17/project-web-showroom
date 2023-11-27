@@ -343,10 +343,8 @@ section {
   overflow: hidden;
   position: relative;
   box-shadow: 20px 30px 25px rgba(0, 0, 0, 0.3); /* Add a box shadow */
-  padding-left: 10px;
   padding-top: 30px;
   padding-bottom:10px ;
-  padding-right:10px ;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -377,6 +375,9 @@ section {
   position: absolute;
   bottom: 7px;
   right: 20px;
+}
+.card:hover {
+  transform: scale(1.05);
 }
 
 .image-carousel {
