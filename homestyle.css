@@ -39,16 +39,16 @@ body {
 
 @keyframes theme {
   0% {
-    background: #CC0000;
+    background: #ffff;
   }
   33% {
     background: #E5E5E5;
   }
   50% {
-    background: #FF0000;
+    background: #E5E5E5;
   }
   100% {
-    background: #A3A3A3;
+    background: #ffff;
   }
 }
 
