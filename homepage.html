@@ -139,6 +139,49 @@
       function closeServicePopup() {
         document.getElementById("servicePopup").style.display = "none";
       }
+
+      app.controller("AboutUsController", function ($scope) {
+    $scope.kelompok = "ng-antuk";
+
+    $scope.members = [
+      {
+        name: "Richard Christian",
+        code: "Python",
+        nim: 535220018,
+        ttl: "Jakarta, 24 Oktober 2002",
+        image:'assets/one.jpg'
+      },
+      {
+        name: "Nelson",
+        code: "Java",
+        nim: 535220021,
+        ttl: "Singkawang, 10 Agustus 2004",
+        image:'assets/two.jpg'
+      },
+      {
+        name: "Jessen Chayadi",
+        code: "Semua",
+        nim: 535220023,
+        ttl: "Jakarta, 17 Juni 2004",
+        image:'assets/tree.jpg'
+      },
+      {
+        name: "Finnia Li",
+        code: "C++",
+        nim: 535220030,
+        ttl: "Pangkalpinang, 20 Febuary 2004",
+        image:'assets/four.jpg'
+      },
+      {
+        name: "Valentino A.Radjawane",
+        code: "HTML",
+        nim: 535220040,
+        ttl: "Papua, 14 Juni 2004",
+        image:'assets/five.jpg'
+      },
+      // Add more members as needed
+    ];
+  });
     </script>
   </head>
   <body ng-app="myApp" ng-controller="myController">
@@ -184,7 +227,7 @@
               </a>
             </li>
             <li class="item">
-              <a href="about us/about-us.html" class="link flex">
+              <a href="#about us" class="link flex">
                 <i class="bx bx-group"></i>
                 <span>About Us</span>
               </a>
@@ -289,6 +332,37 @@
           </div>
         </div>
       </section>
+      <section id="about us" ng-controller="AboutUsController">
+        <h1>About Us</h1>
+        <div class="about-us-content">
+          
+    
+            <!-- Display members' names and images -->
+            <div class="members-container">
+                <div class="member" ng-repeat="member in members">
+                    <img ng-src="{{ member.image }}" alt="{{ member.name }}" alt="{{ member.nim }}" class="member-image" />
+                    <h2>{{ member.name }}</h2>
+                    <h3>{{ member.nim }}</h3>
+                </div>
+            </div>
+    
+            <!-- Content from the second code snippet -->
+            <div class="container">
+                <section class="heading">
+                    <h1><span>Kelompok</span> {{ kelompok }}</h1>
+                    <br />
+                    <p>Kelompok yang berisikan anak - anak FTI Untar kelas A yang memiliki kemampuan coding yang berbeda - beda</p>
+                    <br />
+                    <div class="homeimg">
+                        <img src="assets/klmpk_ngtuk.jpg" />
+                    </div>
+                </section>
+    
+                <!-- Add other sections as needed -->
+            </div>
+        </div>
+    </section>
+    
     </main>
 
     <script>
