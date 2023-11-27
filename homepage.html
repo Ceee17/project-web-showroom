@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Honda</title>
+    <link rel="stylesheet" href="homestyle.css" />
+    <link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script src="homejs.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+      var app = angular.module("myApp", []);
+
+      app.controller("myController", function ($scope) {
+        $scope.message = "Welcome to Honda Angular App!";
+
+        // Sample card data for Promotions
+        $scope.promotions = [
+          {
+            title: "",
+            image: "assets/civictyper.png",
+            description: "CIVIC TYPE R",
+          },
+          {
+            title: "",
+            image: "assets/hondansx.png",
+            description: "All New Honda NSX",
+          },
+          {
+            title: "",
+            image: "assets/crv.png",
+            description: "ALL NEW CR-V",
+          },
+          {
+            title: "",
+            image: "assets/hondae.png",
+            description: "Honda E",
+          },
+          {
+            title: "",
+            image: "assets/hondahrv.png",
+            description: "ALL NEW HR-V",
+          },
+          {
+            title: "",
+            image: "assets/briors.png",
+            description: "Honda Brio RS",
+          },
+          {
+            title: "",
+            image: "assets/wrv.png",
+            description: "HONDA WR-V  ",
+          },
+          {
+            title: "",
+            image: "assets/cityhatchback.png",
+            description: "Honda City Hatchback",
+          },
+          {
+            title: "",
+            image: "assets/hondaaccord.png",
+            description: "Honda Accord",
+          },
+          {
+            title: "",
+            image: "assets/hondansx.png",
+            description: "All New Honda NSX",
+          },
+          {
+            title: "",
+            image: "assets/crv.png",
+            description: "ALL NEW CR-V",
+          },
+          {
+            title: "",
+            image: "assets/hondae.png",
+            description: "Honda E",
+          },
+        ];
+
+        $scope.newsItems = [
+          {
+            title: "Honda Hadirkan Honda Prelude Concept di Los Angeles Auto Show 2023",
+            image: "assets/berita1edit.jpg",
+            link: "https://www.honda-indonesia.com/news/pertama-kali-tampil-di-amerika-honda-hadirkan-honda-prelude-concept-di-los-angeles-auto-show-2023",
+          },
+          {
+            title: "All New Honda Civic Type R Raih Penghargaan dari Ajang Carvaganza Editors Choice Award 2023",
+            image: "assets/berita2.webp",
+            link: "https://www.honda-indonesia.com/news/all-new-honda-civic-type-r-raih-penghargaan-dari-ajang-carvaganza-editors-choice-award-2023",
+          },
+          {
+            title: "Para Pembalap Honda Racing Indonesia Berhasil Mengunci Gelar Juara Nasional di Seri Terakhir ISSOM 2023",
+            image: "assets/berita3.png",
+            link: "https://www.honda-indonesia.com/news/para-pembalap-honda-racing-indonesia-berhasil-mengunci-gelar-juara-nasional-di-seri-terakhir-issom-2023",
+          },
+        ];
+      });
+      app.controller("ImageCarouselController", function ($scope, $interval) {
+        $scope.imageIndex = 0;
+
+        $scope.carouselImages = ["assets/home1.jpg", "assets/home2.png", "assets/home3.jpg"];
+
+        $scope.nextImage = function () {
+          $scope.imageIndex = ($scope.imageIndex + 1) % $scope.carouselImages.length;
+          $scope.currentImage = $scope.carouselImages[$scope.imageIndex];
+        };
+
+        $scope.currentImage = $scope.carouselImages[$scope.imageIndex];
+
+        $interval($scope.nextImage, 5000);
+      });
+
+      app.controller("OwnerCardController", function ($scope) {
+        $scope.owners = [
+          {
+            title: "Owner Waranty",
+            description: "Every new Honda comes with a limited warranty that provides coverage in the unlikely event a repair is needed in the first years of ownership.",
+          },
+          {
+            title: "Service",
+            description: "When it comes to keeping your vehicle in tip-top shape, only Honda Service can deliver the assurance and peace of mind that you´re looking for.",
+          },
+        ];
+
+        $scope.handleButtonClick = function (title) {
+          alert("Button clicked for " + title);
+        };
+
+        $scope.openWarantyPopup = function () {
+          document.getElementById("warantyPopup").style.display = "block";
+        };
+
+        $scope.openServicePopup = function () {
+          document.getElementById("servicePopup").style.display = "block";
+        };
+
+        $scope.submitVehicleInfo = function () {
+          alert("Vehicle Information Submitted!\nType: " + $scope.vehicleType + "\nLicense Plate: " + $scope.licensePlate + "\nEngine Number: " + $scope.engineNumber);
+          closeFormPopup();
+        };
+      });
+
+      function closeWarantyPopup() {
+        document.getElementById("warantyPopup").style.display = "none";
+      }
+
+      function closeServicePopup() {
+        document.getElementById("servicePopup").style.display = "none";
+      }
+    </script>
+  </head>
+  <body ng-app="myApp" ng-controller="myController">
+    <nav class="sidebar locked">
+      <div class="logo_items flex">
+        <span class="nav_image">
+          <img src="assets/logohonda.png" alt="logo_img" />
+        </span>
+        <span class="logo_name">Honda</span>
+        <i class="bx bx-lock-alt" id="lock-icon" title="Unlock Sidebar"></i>
+        <i class="bx bx-x" id="sidebar-close"></i>
+      </div>
+
+      <div class="menu_container">
+        <div class="menu_items">
+          <ul class="menu_item">
+            <div class="menu_title flex">
+              <span class="title">Menu</span>
+              <span class="line"></span>
+            </div>
+            <li class="item">
+              <a href="#home" class="link flex">
+                <i class="bx bx-home-alt"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="#owner" class="link flex">
+                <i class="bx bx-user"></i>
+                <span>Owner</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="#promotion" class="link flex">
+                <i class="bx bxs-discount"></i>
+                <span>Promotion</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="#news" class="link flex">
+                <i class="bx bx-news"></i>
+                <span>News</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="about us/about-us.html" class="link flex">
+                <i class="bx bx-group"></i>
+                <span>About Us</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main">
+      <section id="home">
+        <h1>Honda</h1>
+        <div class="image-carousel" ng-controller="ImageCarouselController">
+          <img ng-src="{{ currentImage }}" alt="Honda Carousel" />
+        </div>
+        <button class="home-button" onclick="alert('Button Clicked!')">Discover Now</button>
+      </section>
+
+      <section id="owner" ng-controller="OwnerCardController">
+        <h1>Honda Owners</h1>
+
+        <div class="cardown-container">
+          <div class="cardown" ng-repeat="owner in owners">
+            <div class="cardown-content">
+              <h2>{{ owner.title }}</h2>
+              <p>{{ owner.description }}</p>
+              <button class="owner-button" ng-if="owner.title === 'Owner Waranty'" ng-click="openWarantyPopup()">Check Warranty</button>
+              <button class="owner-button" ng-if="owner.title === 'Service'" ng-click="openServicePopup()">Add Your Vehicle</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-popup" id="warantyPopup">
+          <div class="form-popup-content">
+            <span class="close-button" onclick="closeWarantyPopup()">&times;</span>
+            <h2>Check Your Vehicle Warranty</h2>
+            <form ng-submit="submitVehicleInfo()">
+              <label for="vehicleType">Vehicle Type:</label>
+              <input type="text" id="vehicleType" ng-model="vehicleType" required />
+
+              <label for="licensePlate">License Plate:</label>
+              <input type="text" id="licensePlate" ng-model="licensePlate" required />
+
+              <label for="engineNumber">Engine Number:</label>
+              <input type="text" id="engineNumber" ng-model="engineNumber" required />
+
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="form-popup" id="servicePopup">
+          <div class="form-popup-content">
+            <span class="close-button" onclick="closeServicePopup()">&times;</span>
+            <h2>Add Your Vehicle to Service</h2>
+            <form ng-submit="submitVehicleInfo()">
+              <label for="vehicleType">Vehicle Type:</label>
+              <input type="text" id="vehicleType" ng-model="vehicleType" required />
+
+              <label for="licensePlate">License Plate:</label>
+              <input type="text" id="licensePlate" ng-model="licensePlate" required />
+
+              <label for="engineNumber">Engine Number:</label>
+              <input type="text" id="engineNumber" ng-model="engineNumber" required />
+
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section id="promotion" class="hidden">
+        <h1>Honda Promotions</h1>
+
+        <div class="card-container">
+          <div class="card" ng-repeat="promotion in promotions" ng-class="'card-' + $index">
+            <div class="head-card">
+              <img ng-src="{{ promotion.image }}" alt="{{ promotion.title }}" class="card-image" />
+            </div>
+            <div class="body-card">
+              <h2>{{ promotion.title }}</h2>
+              <p>{{ promotion.description }}</p>
+              <svg class="w-6 h-6" fill="none" stroke="#303030" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="news" class="hidden">
+        <h1>Honda News</h1>
+        <div class="news-container">
+          <div class="news-item" ng-repeat="news in newsItems">
+            <a ng-href="{{ news.link }}" target="_blank" class="news-link">
+              <div class="news-content">
+                <h2 class="news-title">{{ news.title }}</h2>
+                <p>{{ news.description }}</p>
+              </div>
+              <img ng-src="{{ news.image }}" alt="{{ news.title }}" class="news-image" />
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const links = document.querySelectorAll(".link");
+
+      // Remove the lock icon and prevent sidebar locking
+      const lockIcon = document.querySelector("#lock-icon");
+      lockIcon.parentNode.removeChild(lockIcon);
+
+      // Function to show the sidebar when the mouse enters
+      const showSidebar = () => {
+        document.querySelector(".sidebar").classList.remove("close");
+      };
+
+      // Function to hide the sidebar when the mouse leaves
+      const hideSidebar = () => {
+        document.querySelector(".sidebar").classList.add("close");
+      };
+
+      // Add event listeners for sidebar hover events
+      document.querySelector(".sidebar").addEventListener("mouseenter", showSidebar);
+      document.querySelector(".sidebar").addEventListener("mouseleave", hideSidebar);
+
+      // Add event listeners for sidebar opening/closing
+      const sidebarOpenBtn = document.querySelector("#sidebar-open");
+      sidebarOpenBtn.addEventListener("click", toggleSidebar);
+      const sidebarCloseBtn = document.querySelector("#sidebar-close");
+      sidebarCloseBtn.addEventListener("click", toggleSidebar);
+    </script>
+  </body>
+</html>

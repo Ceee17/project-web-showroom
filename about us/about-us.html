@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <title>ABOUT US SI NG-ANTUK</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  </head>
+
+  <body ng-controller="myCtrl">
+    <a href="../homepage.html" class="return-button">&#8592; Return to Homepage</a>
+    <div class="container">
+      <section class="heading">
+        <h1><span>Kelompok</span> {{kelompokup}}</h1>
+        <br />
+        <p>Kelompok yang berisikan anak - anak FTI Untar kelas A yang memiliki kemampuan coding yang berbeda - beda</p>
+        <br />
+        <div class="homeimg">
+          <img src="img/klmpk_ngtuk.jpg" />
+        </div>
+      </section>
+
+      <section class="one">
+        <div class="img">
+          <img src="img/one.jpg" />
+        </div>
+        <div class="content">
+          <h2>{{nama1}}</h2>
+          <h3>Information you want to know:</h3>
+          <select ng-model="selectedinfo1" ng-options="y.first for (x, y) in information1"></select>
+          <h3>{{selectedinfo1.nim}} {{selectedinfo1.ttl}} {{selectedinfo1.code}}</h3>
+          <br />
+          <p>{{namaAnggota1}}, anggota dari kelompok {{kelompok}} yang berasal dari bekasi & paling sering ketiduran</p>
+          <br />
+          <p>{{validname1}} name & {{validnim1}} nim</p>
+          <a href="" class="read-more">Read More</a>
+        </div>
+      </section>
+
+      <section class="two">
+        <div class="img">
+          <img src="img/two.jpg" />
+        </div>
+        <div class="content">
+          <h2>{{nama2}}</h2>
+          <h3>Information you want to know:</h3>
+          <select ng-model="selectedinfo2" ng-options="y.first for (x, y) in information2"></select>
+          <h3>{{selectedinfo2.nim}} {{selectedinfo2.ttl}} {{selectedinfo2.code}}</h3>
+          <br />
+          <p>{{namaAnggota2}}, anggota kelompok {{kelompok}} yang paling berisi & mageran klo gada kepentingan</p>
+          <p>{{validname2}} name & {{validnim2}} nim</p>
+          <a href="" class="read-more">Read More</a>
+        </div>
+      </section>
+
+      <section class="tree">
+        <div class="img">
+          <img src="img/tree.jpg" />
+        </div>
+        <div class="content">
+          <h2>{{nama3}}</h2>
+          <h3>Information you want to know:</h3>
+          <select ng-model="selectedinfo3" ng-options="y.first for (x, y) in information3"></select>
+          <h3>{{selectedinfo3.nim}} {{selectedinfo3.ttl}} {{selectedinfo3.code}}</h3>
+          <br />
+          <p>{{namaAnggota3}}, ketua dari keoompok {{kelompok}} yang semua otanknya dari dia.</p>
+          <p>{{validname3}} name & {{validnim3}} nim</p>
+          <a href="" class="read-more">Read More</a>
+        </div>
+      </section>
+
+      <section class="four">
+        <div class="img">
+          <img src="img/four.jpg" />
+        </div>
+        <div class="content">
+          <h2>{{nama4}}</h2>
+          <h3>Information you want to know:</h3>
+          <select ng-model="selectedinfo4" ng-options="y.first for (x, y) in information4"></select>
+          <h3>{{selectedinfo4.nim}} {{selectedinfo4.ttl}} {{selectedinfo4.code}}</h3>
+          <br />
+          <p>{{namaAnggota4}}, Merupakan satu - satunya cewe dari kelompok {{kelompok}} yang galak & ngerantau dari bangka</p>
+          <p>{{validname4}} name & {{validnim4}} nim</p>
+          <a href="" class="read-more">Read More</a>
+        </div>
+      </section>
+
+      <section class="five">
+        <div class="img">
+          <img src="img/five.jpg" />
+        </div>
+        <div class="content">
+          <h2>{{nama5}}</h2>
+          <h3>Information you want to know:</h3>
+          <select ng-model="selectedinfo5" ng-options="y.first for (x, y) in information5"></select>
+          <h3>{{selectedinfo5.nim}} {{selectedinfo5.ttl}} {{selectedinfo5.code}}</h3>
+          <br />
+          <p>{{namaAnggota5}}, anggota kelompok {{kelompok}} yang paling jauh & paling sibuk sekarang.</p>
+          <p>{{validname5}} name & {{validnim5}} nim</p>
+          <a href="" class="read-more">Read More</a>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      angular.module("myApp", []).controller("myCtrl", function ($scope) {
+        $scope.kelompok = "ng-antuk";
+
+        $scope.namaAnggota1 = "Richard Christian";
+        $scope.namaAnggota2 = "Nelson";
+        $scope.namaAnggota3 = "Jessen Chayadi";
+        $scope.namaAnggota4 = "Finnia Li";
+        $scope.namaAnggota5 = "Valentino Almendo Radjawane";
+
+        $scope.codeAnggota1 = "Python";
+        $scope.codeAnggota2 = "Java";
+        $scope.codeAnggota3 = "Semuanya";
+        $scope.codeAnggota4 = "c++";
+        $scope.codeAnggota5 = "HTML";
+
+        $scope.nim1 = 535220018;
+        $scope.nim2 = 535220021;
+        $scope.nim3 = 535220023;
+        $scope.nim4 = 535220030;
+        $scope.nim5 = 535220040;
+
+        $scope.ttl1 = "Jakarta, 24 Oktober 2002";
+        $scope.ttl2 = "Singkawang, 10 Agustus 2004";
+        $scope.ttl3 = "Jakarta, 17 Juni 2004";
+        $scope.ttl4 = "Pangkalpinang, 20 Febuary 2004";
+        $scope.ttl5 = "Papua, 14 Juni 2004";
+
+        $scope.kelompokup = $scope.kelompok.toUpperCase();
+
+        $scope.nama1 = $scope.namaAnggota1.toUpperCase();
+        $scope.nama2 = $scope.namaAnggota2.toUpperCase();
+        $scope.nama3 = $scope.namaAnggota3.toUpperCase();
+        $scope.nama4 = $scope.namaAnggota4.toUpperCase();
+        $scope.nama5 = $scope.namaAnggota5.toUpperCase();
+
+        $scope.code1 = $scope.codeAnggota1.toLowerCase();
+        $scope.code2 = $scope.codeAnggota2.toLowerCase();
+        $scope.code3 = $scope.codeAnggota3.toLowerCase();
+        $scope.code4 = $scope.codeAnggota4.toLowerCase();
+        $scope.code5 = $scope.codeAnggota5.toLowerCase();
+
+        $scope.information1 = {
+          car01: { first: "NIM", nim: $scope.nim1 },
+          car02: { first: "place date of birth", ttl: $scope.ttl1 },
+          car03: { first: "coding skills", code: $scope.codeAnggota1 },
+        };
+        $scope.information2 = {
+          car01: { first: "NIM", nim: $scope.nim2 },
+          car02: { first: "place date of birth", ttl: $scope.ttl2 },
+          car03: { first: "coding skills", code: $scope.codeAnggota2 },
+        };
+        $scope.information3 = {
+          car01: { first: "NIM", nim: $scope.nim3 },
+          car02: { first: "place date of birth", ttl: $scope.ttl3 },
+          car03: { first: "coding skills", code: $scope.codeAnggota3 },
+        };
+        $scope.information4 = {
+          car01: { first: "NIM", nim: $scope.nim4 },
+          car02: { first: "place date of birth", ttl: $scope.ttl4 },
+          car03: { first: "coding skills", code: $scope.codeAnggota4 },
+        };
+        $scope.information5 = {
+          car01: { first: "NIM", nim: $scope.nim5 },
+          car02: { first: "place date of birth", ttl: $scope.ttl5 },
+          car03: { first: "coding skills", code: $scope.codeAnggota5 },
+        };
+
+        $scope.validname1 = angular.isString($scope.nama1);
+        $scope.validname2 = angular.isString($scope.nama2);
+        $scope.validname3 = angular.isString($scope.nama3);
+        $scope.validname4 = angular.isString($scope.nama4);
+        $scope.validname5 = angular.isString($scope.nama5);
+
+        $scope.validnim1 = angular.isNumber($scope.nim1);
+        $scope.validnim2 = angular.isNumber($scope.nim2);
+        $scope.validnim3 = angular.isNumber($scope.nim3);
+        $scope.validnim4 = angular.isNumber($scope.nim4);
+        $scope.validnim5 = angular.isNumber($scope.nim5);
+      });
+    </script>
+  </body>
+</html>
