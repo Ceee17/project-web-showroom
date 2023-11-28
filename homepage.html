@@ -10,6 +10,7 @@
     <link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <script src="homejs.js" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script>
       var app = angular.module("myApp", []);
 
@@ -70,6 +71,23 @@
     
   ];
 
+  // $scope.vehicleList = [];
+
+  // $scope.submitVehicleInfo = function() {
+  //   var newVehicle = {
+  //     vehicleType: $scope.vehicleType,
+  //     licensePlate: $scope.licensePlate,
+  //     engineNumber: $scope.engineNumber
+  //   };
+
+  //   $scope.vehicleList.push(newVehicle);
+
+  //   $scope.vehicleType = '';
+  //   $scope.licensePlate = '';
+  //   $scope.engineNumber = '';
+  // };
+
+
         $scope.newsItems = [
           {
             title: "Honda Hadirkan Honda Prelude Concept di Los Angeles Auto Show 2023",
@@ -91,7 +109,7 @@
       app.controller("ImageCarouselController", function ($scope, $interval) {
         $scope.imageIndex = 0;
 
-        $scope.carouselImages = ["assets/home1.jpg", "assets/home2.png", "assets/home3.jpg"];
+        $scope.carouselImages = ["assets/home11.jpg", "assets/home22.jpg", "assets/hero1.jpg"];
 
         $scope.nextImage = function () {
           $scope.imageIndex = ($scope.imageIndex + 1) % $scope.carouselImages.length;
@@ -113,7 +131,7 @@
             title: "Service",
             description: "When it comes to keeping your vehicle in tip-top shape, only Honda Service can deliver the assurance and peace of mind that you´re looking for.",
           },
-        ];
+        ];  
 
         $scope.handleButtonClick = function (title) {
           alert("Button clicked for " + title);
@@ -128,10 +146,34 @@
         };
 
         $scope.submitVehicleInfo = function () {
-          alert("Vehicle Information Submitted!\nType: " + $scope.vehicleType + "\nLicense Plate: " + $scope.licensePlate + "\nEngine Number: " + $scope.engineNumber);
-          closeFormPopup();
-        };
-      });
+    // Generate a random warranty expiration date
+    var minYear = 2022;
+    var maxYear = 2025;
+    var randomYear = Math.floor(Math.random() * (maxYear - minYear + 1)) + minYear;
+    var randomMonth = Math.floor(Math.random() * 12) + 1;
+    var randomDay = Math.floor(Math.random() * 28) + 1;
+    var warrantyExpirationDate = new Date(randomYear, randomMonth, randomDay);
+
+    // Display the warranty expiration date in the popup
+    document.getElementById("warrantyExpirationDate").textContent = warrantyExpirationDate.toLocaleDateString();
+
+    // Show the warranty expiration popup
+    document.getElementById("warrantyExpirationPopup").style.display = "block";
+  };
+
+  $scope.closeFormPopup = function () {
+    // Clear input fields
+    document.getElementById("vehicleType").value = "";
+    document.getElementById("licensePlate").value = "";
+    document.getElementById("engineNumber").value = "";
+
+    // Hide warranty expiration popup
+    document.getElementById("warrantyExpirationPopup").style.display = "none";
+
+    // Hide the popup
+    document.getElementById("warantyPopup").style.display = "none";
+  };
+});
 
       function closeWarantyPopup() {
         document.getElementById("warantyPopup").style.display = "none";
@@ -143,6 +185,7 @@
     </script>
   </head>
   <body ng-app="myApp" ng-controller="myController">
+  <div class="container">
     <nav class="sidebar locked">
       <div class="logo_items flex">
         <span class="nav_image">
@@ -196,16 +239,20 @@
     </nav>
 
     <main class="main">
-      <section id="home">
-        <h1>Honda</h1>
+      <section id="home" class="section">
         <div class="image-carousel" ng-controller="ImageCarouselController">
           <img ng-src="{{ currentImage }}" alt="Honda Carousel" />
+          <div class="carousel-text">
+            <h2>HONDA</h2>
+            <p>Fueling Your Drive, Even When 'Ng-Antuk' Kicks in</p>
+            <p>Welcome to Ng-Antuk Honda!</p>
+          </div>
         </div>
-        <button class="home-button" onclick="alert('Button Clicked!')">Come and Order Now!!!</button>
+        <button class="home-button" onclick="alert('Button Clicked!')">Discover Now</button>
       </section>
 
-      <section id="owner" ng-controller="OwnerCardController">
-        <h1>Honda Owners</h1>
+      <section id="owner" ng-controller="OwnerCardController" class="section">
+        <h3>Honda Owners</h3>
 
         <div class="cardown-container">
           <div class="cardown" ng-repeat="owner in owners">
@@ -225,40 +272,50 @@
             <form ng-submit="submitVehicleInfo()">
               <label for="vehicleType">Vehicle Type:</label>
               <input type="text" id="vehicleType" ng-model="vehicleType" required />
-
+        
               <label for="licensePlate">License Plate:</label>
               <input type="text" id="licensePlate" ng-model="licensePlate" required />
-
+        
               <label for="engineNumber">Engine Number:</label>
               <input type="text" id="engineNumber" ng-model="engineNumber" required />
-
+        
               <button type="submit">Submit</button>
             </form>
+        
+            <div id="warrantyExpirationPopup">
+              Warranty Expiration Date: <span id="warrantyExpirationDate"></span>
+            </div>
           </div>
         </div>
 
         <div class="form-popup" id="servicePopup">
           <div class="form-popup-content">
             <span class="close-button" onclick="closeServicePopup()">&times;</span>
-            <h2>Add Your Vehicle to Service</h2>
-            <form ng-submit="submitVehicleInfo()">
-              <label for="vehicleType">Vehicle Type:</label>
-              <input type="text" id="vehicleType" ng-model="vehicleType" required />
-
-              <label for="licensePlate">License Plate:</label>
-              <input type="text" id="licensePlate" ng-model="licensePlate" required />
-
-              <label for="engineNumber">Engine Number:</label>
-              <input type="text" id="engineNumber" ng-model="engineNumber" required />
-
+            <h2>Schedule Your Vehicle Service</h2>
+        
+            <form>
+              <label for="serviceType">Service Type:</label>
+              <select id="serviceType">
+                <option value="oilChange">Oil Change</option>
+                <option value="tireRotation">Tire Rotation</option>
+                <option value="brakeInspection">Brake Inspection</option>
+              </select>
+        
+              <label for="appointmentDate" class="appointmentDate-label">Appointment Date:</label>
+              <input type="date" id="appointmentDate" required />
+        
+              <label for="appointmentTime">Appointment Time:</label>
+              <input type="time" id="appointmentTime" required />
+        
               <button type="submit">Submit</button>
             </form>
           </div>
         </div>
+        
       </section>
 
-      <section id="promotion" class="hidden">
-        <h1>Honda Promotions</h1>
+      <section id="promotion" class="hidden section">
+        <h3>Honda Promotions</h3>
 
         <div class="card-container">
           <div class="card" ng-repeat="promotion in promotions" ng-class="'card-' + $index">
@@ -276,8 +333,8 @@
         </div>
       </section>
 
-      <section id="news" class="hidden">
-        <h1>Honda News</h1>
+      <section id="news" class="hidden section">
+        <h3>Honda News</h3>
         <div class="news-container">
           <div class="news-item" ng-repeat="news in newsItems">
             <a ng-href="{{ news.link }}" target="_blank" class="news-link">
@@ -291,7 +348,7 @@
         </div>
       </section>
     </main>
-
+  </div>
     <script>
       const links = document.querySelectorAll(".link");
 
@@ -319,5 +376,9 @@
       const sidebarCloseBtn = document.querySelector("#sidebar-close");
       sidebarCloseBtn.addEventListener("click", toggleSidebar);
     </script>
+      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+      <script>
+        AOS.init();
+      </script>
   </body>
 </html>
