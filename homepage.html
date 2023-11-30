@@ -71,23 +71,6 @@
     
   ];
 
-  // $scope.vehicleList = [];
-
-  // $scope.submitVehicleInfo = function() {
-  //   var newVehicle = {
-  //     vehicleType: $scope.vehicleType,
-  //     licensePlate: $scope.licensePlate,
-  //     engineNumber: $scope.engineNumber
-  //   };
-
-  //   $scope.vehicleList.push(newVehicle);
-
-  //   $scope.vehicleType = '';
-  //   $scope.licensePlate = '';
-  //   $scope.engineNumber = '';
-  // };
-
-
         $scope.newsItems = [
           {
             title: "Honda Hadirkan Honda Prelude Concept di Los Angeles Auto Show 2023",
@@ -146,44 +129,73 @@
         };
 
         $scope.submitVehicleInfo = function () {
-    // Generate a random warranty expiration date
     var minYear = 2022;
     var maxYear = 2025;
     var randomYear = Math.floor(Math.random() * (maxYear - minYear + 1)) + minYear;
-    var randomMonth = Math.floor(Math.random() * 12) + 1;
+    var randomMonth = Math.floor(Math.random() * 11) + 1;
     var randomDay = Math.floor(Math.random() * 28) + 1;
     var warrantyExpirationDate = new Date(randomYear, randomMonth, randomDay);
 
-    // Display the warranty expiration date in the popup
     document.getElementById("warrantyExpirationDate").textContent = warrantyExpirationDate.toLocaleDateString();
 
-    // Show the warranty expiration popup
     document.getElementById("warrantyExpirationPopup").style.display = "block";
   };
 
   $scope.closeFormPopup = function () {
-    // Clear input fields
     document.getElementById("vehicleType").value = "";
     document.getElementById("licensePlate").value = "";
     document.getElementById("engineNumber").value = "";
 
-    // Hide warranty expiration popup
     document.getElementById("warrantyExpirationPopup").style.display = "none";
 
-    // Hide the popup
     document.getElementById("warantyPopup").style.display = "none";
+  };
+  
+  $scope.submittedServiceData = {};
+  $scope.showServiceDataContainer = false;
+
+  $scope.submitServiceInfo = function () {
+    $scope.submittedServiceData = {
+      serviceType: $scope.serviceType,
+      appointmentDate: document.getElementById("appointmentDate").value,
+      appointmentTime: document.getElementById("appointmentTime").value,
+    };
+
+    $scope.showServiceDataContainer = true;
+
+    document.getElementById("servicePopup").style.display = "none";
+  };
+
+  $scope.openServicePopup = function () {
+    document.getElementById("serviceType").selectedIndex = -1;
+    document.getElementById("appointmentDate").value = "";
+    document.getElementById("appointmentTime").value = "";
+    document.getElementById("servicePopup").style.display = "block";
+  };
+
+  $scope.closeWarantyPopup = function () {
+    document.getElementById("vehicleType").value = "";
+    document.getElementById("licensePlate").value = "";
+    document.getElementById("engineNumber").value = "";
+    document.getElementById("warrantyExpirationPopup").value= "";
+    document.getElementById("warantyPopup").style.display = "none";
+  };
+
+  $scope.closeServicePopup = function () {
+    document.getElementById("servicePopup").style.display = "none";
+  };
+
+  $scope.showServiceDataContainer = false;
+  $scope.submittedServiceData = {}; // Initialize with an empty object
+
+  // Function to toggle the container visibility and reset service data
+  $scope.toggleServiceDataContainer = function() {
+    $scope.showServiceDataContainer = !$scope.showServiceDataContainer;
+    $scope.submittedServiceData = {}; // Reset service data
   };
 });
 
-      function closeWarantyPopup() {
-        document.getElementById("warantyPopup").style.display = "none";
-      }
-
-      function closeServicePopup() {
-        document.getElementById("servicePopup").style.display = "none";
-      }
-
-      app.controller("AboutUsController", function ($scope) {
+app.controller("AboutUsController", function ($scope) {
     $scope.kelompok = "ng-antuk";
 
     $scope.members = [
@@ -291,7 +303,11 @@
             <p>Welcome to Ng-Antuk Honda!</p>
           </div>
         </div>
-        <button class="home-button" onclick="alert('Button Clicked!')">Discover Now</button>
+        <button class="home-button">
+          <a href="#promotion" >
+            Discover Now
+          </a>
+        </button>
       </section>
 
       <section id="owner" ng-controller="OwnerCardController" class="section">
@@ -307,10 +323,18 @@
             </div>
           </div>
         </div>
-
+      <div class="card-container">
+        <div class="servicecard" ng-show="showServiceDataContainer">
+          <h2>Service Information</h2>
+            <p>Service Type: {{ submittedServiceData.serviceType }}</p>
+            <p>Appointment Date: {{ submittedServiceData.appointmentDate }}</p>
+            <p>Appointment Time: {{ submittedServiceData.appointmentTime }}</p>
+          <button type="button" class="cancel-button" ng-click="toggleServiceDataContainer()">Cancel</button>
+        </div>
+      </div>
         <div class="form-popup" id="warantyPopup">
           <div class="form-popup-content">
-            <span class="close-button" onclick="closeWarantyPopup()">&times;</span>
+            <span class="close-button" ng-click="closeWarantyPopup()">&times;</span>
             <h2>Check Your Vehicle Warranty</h2>
             <form ng-submit="submitVehicleInfo()">
               <label for="vehicleType">Vehicle Type:</label>
@@ -322,7 +346,7 @@
               <label for="engineNumber">Engine Number:</label>
               <input type="text" id="engineNumber" ng-model="engineNumber" required />
         
-              <button type="submit">Submit</button>
+              <button type="submit" class="submitbtn">Submit</button>
             </form>
         
             <div id="warrantyExpirationPopup">
@@ -333,28 +357,27 @@
 
         <div class="form-popup" id="servicePopup">
           <div class="form-popup-content">
-            <span class="close-button" onclick="closeServicePopup()">&times;</span>
+            <span class="close-button" ng-click="closeServicePopup()">&times;</span>
             <h2>Schedule Your Vehicle Service</h2>
-        
-            <form>
+      
+            <form ng-submit="submitServiceInfo()">
               <label for="serviceType">Service Type:</label>
-              <select id="serviceType">
+              <select id="serviceType" ng-model="serviceType">
                 <option value="oilChange">Oil Change</option>
                 <option value="tireRotation">Tire Rotation</option>
                 <option value="brakeInspection">Brake Inspection</option>
               </select>
-        
+      
               <label for="appointmentDate" class="appointmentDate-label">Appointment Date:</label>
               <input type="date" id="appointmentDate" required />
-        
+      
               <label for="appointmentTime">Appointment Time:</label>
               <input type="time" id="appointmentTime" required />
-        
-              <button type="submit">Submit</button>
+      
+              <button type="submit" class="submitbtn">Submit</button>
             </form>
           </div>
         </div>
-        
       </section>
 
       <section id="promotion" class="hidden section">
@@ -390,11 +413,9 @@
           </div>
         </div>
       </section>
-      <section id="about us" ng-controller="AboutUsController">
+      <section id="about us" class="about-us" ng-controller="AboutUsController">
         <h1>About Us</h1>
         <div class="about-us-content">
-          
-    
             <!-- Display members' names and images -->
             <div class="members-container">
                 <div class="member" ng-repeat="member in members">
@@ -405,7 +426,7 @@
             </div>
     
             <!-- Content from the second code snippet -->
-            <div class="container">
+            <div class="about-container">
                 <section class="heading">
                     <h1><span>Kelompok</span> {{ kelompok }}</h1>
                     <br />

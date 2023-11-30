@@ -184,6 +184,15 @@ body {
 
 .item {
   list-style: none;
+  text-decoration: none;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  color: #0d1b2a;
+}
+
+.item:hover{
+  color: #fff;
+  background-color: #cc0000;
 }
 
 .link {
@@ -310,7 +319,6 @@ body, .main{
 }
 
 .sidebar-open .main {
-  margin-left: 0px; 
   margin-left: 270px;
   z-index: 1;
 }
@@ -351,7 +359,6 @@ body, .main{
   object-fit: cover;
   border-radius: 25px;
 }
-
 
 .card p {
   margin: 0;
@@ -485,7 +492,9 @@ h3{
   font-size: 16px;
   cursor: pointer;
   background-color: #cc0000;
+  box-shadow: 2px 7px 4.5px rgba(0, 0, 0, 0.3);
   color: #fff;
+  transition: 1s ease;
   border: none;
   border-radius: 5px;
   margin-top: 10px;
@@ -579,12 +588,56 @@ form button {
   cursor: pointer;
 }
 
+.servicecard {
+  width: 350px;
+  height: 200px;
+  border-radius: 15px;
+  background-color: #fff;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 20px 30px 25px rgba(0, 0, 0, 0.3);
+  padding-top: 30px;
+  padding-bottom: 10px;
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.servicecard h2 {
+  margin-bottom: 10px; /* Adjust the margin as needed */
+}
+
+.servicecard p {
+  margin: 0; /* Remove default margin for paragraphs */
+}
+
+.servicecard button {
+  margin-top: 10px; 
+  text-decoration: none;
+  padding: 15px; /* Increase padding for larger size */
+  font-size: 18px; /* Increase font size for larger text */
+  cursor: pointer;
+  background-color: #cc0000;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  transition: 1s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.cancel-button{
+
+}
+
 #home {
   position: relative;
 }
 
 .home-button {
   position: absolute;
+  text-decoration: none;
   top: 78%;
   left: 88%;
   transform: translateX(-50%);
@@ -609,6 +662,11 @@ form button {
 
 .home-button:active {
   transform: scale(0.9) translateX(-50%);
+}
+
+.home-button a{
+  text-decoration: none;
+  color: #fff;
 }
 
 h1{
@@ -731,16 +789,22 @@ input[type="text"], input[type="date"], input[type="time"] {
   color: #000;
   font-weight: bold;
   cursor: pointer;
-} */#about-us {
+} */
+
+#about-us {
   text-align: center;
   margin-top: 50px;
   margin-left: auto; /* Set margin-left to auto to center the section */
   margin-right: auto; /* Set margin-right to auto for better centering */
 }
 
+.about-us h1{
+  padding-left: 300px;
+}
+
 .about-us-content {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 40px auto;
 }
 
 .members-container {
@@ -770,9 +834,14 @@ input[type="text"], input[type="date"], input[type="time"] {
 .member h3 {
   font-size: 12px;
 }
-.container {
+
+.about-container {
   max-width: 800px;
   margin: 40px auto;
+}
+
+.about-us h1{
+  margin-left: 40px;
 }
 
 .heading {
