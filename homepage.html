@@ -195,6 +195,7 @@
   };
 });
 
+
 app.controller("AboutUsController", function ($scope) {
     $scope.kelompok = "ng-antuk";
 
@@ -380,9 +381,9 @@ app.controller("AboutUsController", function ($scope) {
         </div>
       </section>
 
-      <section id="promotion" class="hidden section">
+      <section id="promotion" class="hidden section" ng-controller="myController">
         <h3>Honda Promotions</h3>
-
+      
         <div class="card-container">
           <div class="card" ng-repeat="promotion in promotions" ng-class="'card-' + $index">
             <div class="head-card">
@@ -391,9 +392,10 @@ app.controller("AboutUsController", function ($scope) {
             <div class="body-card">
               <h2>{{ promotion.title }}</h2>
               <p>{{ promotion.description }}</p>
-              <svg class="w-6 h-6" fill="none" stroke="#303030" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-              </svg>
+              <!-- Replace the arrow with a button -->
+              <button class="promo-button" ng-click="handlePromotionClick(promotion)">
+                Order Now !!!
+              </button>
             </div>
           </div>
         </div>
